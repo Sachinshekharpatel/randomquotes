@@ -5,6 +5,7 @@ const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
   const [list, setList] = useState([]);
   const [showList, setShowList] = useState(false);
+
   useEffect(() => {
     const dataFetch = async () => {
       try {
@@ -19,18 +20,21 @@ const Quotes = () => {
 
     dataFetch();
   }, []);
+
   const saveListHandler = () => {
     setList([...list, quotes]);
   };
 
   return (
     <>
-      <button
-        onClick={() => setShowList(!showList)}
-        className="bg-blue-500  ml-[40%] mt-10 mb-5 align-middle hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        {showList ? "Hide List" : "Show List"}
-      </button>
+      <div className="flex justify-center mt-10 mb-5">
+        <button
+          onClick={() => setShowList(!showList)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          {showList ? "Hide List" : "Show List"}
+        </button>
+      </div>
       <div className="flex flex-wrap justify-center">
         {quotes.map((quote, i) => (
           <div
@@ -40,7 +44,7 @@ const Quotes = () => {
             <p className="text-lg text-gray-800">{quote}</p>
             <button
               onClick={saveListHandler}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 "
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
             >
               Save To List
             </button>
@@ -48,7 +52,7 @@ const Quotes = () => {
         ))}
       </div>
       <div>
-        <h1 className="text-3xl font-bold underline ml-[34%] mt-2">List of Quotes</h1>
+        <h1 className="text-3xl font-bold underline text-center mt-2">List of Quotes</h1>
         {showList && (
           <div className="flex flex-wrap justify-center">
             {list.map((quote, i) => (
